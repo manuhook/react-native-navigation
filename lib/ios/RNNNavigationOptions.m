@@ -85,6 +85,34 @@
     return result;
 }
 
+- (RNNNavigationOptions *)mergeOptionsLight:(RNNNavigationOptions *)options {
+    if (!options) {
+        return self;
+    }
+
+    RNNNavigationOptions *result = self;
+    
+    // Only merge status bar style
+    if (options.statusBar.style.hasValue) {
+        result.statusBar.style = options.statusBar.style;
+    }
+    
+    // Only merge topbar button colors
+    if (options.topBar.backButton.color.hasValue) {
+        result.topBar.backButton.color = options.topBar.backButton.color;
+    }
+    
+    if (options.topBar.rightButtons) {
+        for (int i = 0; i < options.topBar.rightButtons.count; i++) {
+            if (options.topBar.rightButtons[i].color.hasValue) {
+                result.topBar.rightButtons[i].color = options.topBar.rightButtons[i].color;
+            }
+        }
+    }
+
+    return result;
+}
+
 - (RNNNavigationOptions *)copy {
     RNNNavigationOptions *newOptions = [RNNNavigationOptions emptyOptions];
     [newOptions.topBar mergeOptions:self.topBar];

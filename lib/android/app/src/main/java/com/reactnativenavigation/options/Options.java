@@ -154,4 +154,23 @@ public class Options {
         bottomTabsOptions.currentTabIndex = new NullNumber();
         return this;
     }
+
+    @CheckResult
+    public Options mergeOptionsLight(final Options other) {
+        Options result = copy();
+        if (other.statusBar.style.hasValue()) {
+            result.statusBar.style = other.statusBar.style;
+        }
+        if (other.topBar.backButton.color.hasValue()) {
+            result.topBar.backButton.color = other.topBar.backButton.color;
+        }
+        if (other.topBar.rightButtons != null) {
+            for (int i = 0; i < other.topBar.rightButtons.size(); i++) {
+                if (other.topBar.rightButtons.get(i).color.hasValue()) {
+                    result.topBar.rightButtons.get(i).color = other.topBar.rightButtons.get(i).color;
+                }
+            }
+        }
+        return result;
+    }
 }

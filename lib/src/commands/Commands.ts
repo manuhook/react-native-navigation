@@ -13,6 +13,7 @@ import { Store } from '../components/Store';
 import { LayoutProcessor } from '../processors/LayoutProcessor';
 import { CommandName } from '../interfaces/CommandName';
 import { OptionsCrawler } from './OptionsCrawler';
+import { LightOptions } from '../interfaces/LightOptions';
 
 export class Commands {
   constructor(
@@ -25,7 +26,7 @@ export class Commands {
     private readonly optionsProcessor: OptionsProcessor,
     private readonly layoutProcessor: LayoutProcessor,
     private readonly optionsCrawler: OptionsCrawler
-  ) {}
+  ) { }
 
   public setRoot(simpleApi: LayoutRoot) {
     const input = cloneLayout(simpleApi);
@@ -218,6 +219,14 @@ export class Commands {
     const result = this.nativeCommandsSender.getLaunchArgs(commandId);
     this.commandsObserver.notify(CommandName.GetLaunchArgs, { commandId });
     return result;
+  }
+
+  /**
+   * Merge options with lower performance impact, only handling color options for statusbar and navbar
+   */
+  public mergeOptionsLight(componentId: string, options: LightOptions) {
+    const input = { componentId, options };
+    return this.nativeCommandsSender.mergeOptionsLight(input);
   }
 }
 

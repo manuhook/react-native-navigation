@@ -49,4 +49,6 @@ extern const NSInteger BLUR_TOPBAR_TAG;
 
 - (RNNNavigationOptions *)mergeOptions:(RNNNavigationOptions *)options;
 
+- (RNNNavigationOptions *)mergeOptionsLight:(RNNNavigationOptions *)options;
+
 @end

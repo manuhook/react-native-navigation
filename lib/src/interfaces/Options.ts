@@ -76,13 +76,13 @@ export type Interpolation =
   | { type: 'linear' }
   | { type: 'overshoot'; tension?: number }
   | {
-      type: 'spring';
-      mass?: number;
-      damping?: number;
-      stiffness?: number;
-      allowsOverdamping?: boolean;
-      initialVelocity?: number;
-    };
+    type: 'spring';
+    mass?: number;
+    damping?: number;
+    stiffness?: number;
+    allowsOverdamping?: boolean;
+    initialVelocity?: number;
+  };
 interface ThemeColor {
   light?: string | symbol;
   dark?: string | symbol;
@@ -1332,29 +1332,29 @@ export interface StackAnimationOptions {
    * Configure animations for the top bar
    */
   topBar?:
-    | ViewAnimationOptions
-    | {
-        enter?: ViewAnimationOptions;
-        exit?: ViewAnimationOptions;
-      };
+  | ViewAnimationOptions
+  | {
+    enter?: ViewAnimationOptions;
+    exit?: ViewAnimationOptions;
+  };
   /**
    * Configure animations for the bottom tabs
    */
   bottomTabs?:
-    | ViewAnimationOptions
-    | {
-        enter?: ViewAnimationOptions;
-        exit?: ViewAnimationOptions;
-      };
+  | ViewAnimationOptions
+  | {
+    enter?: ViewAnimationOptions;
+    exit?: ViewAnimationOptions;
+  };
   /**
    * Configure animations for the content (Screen)
    */
   content?:
-    | ViewAnimationOptions
-    | {
-        enter?: ViewAnimationOptions;
-        exit?: ViewAnimationOptions;
-      };
+  | ViewAnimationOptions
+  | {
+    enter?: ViewAnimationOptions;
+    exit?: ViewAnimationOptions;
+  };
   /**
    * Animations to be applied on elements which are shared between the appearing and disappearing screens
    */
@@ -1435,6 +1435,20 @@ export interface IconBackgroundOptions {
    * Set height
    */
   height?: number;
+}
+
+export interface LightOptions {
+  statusBar?: {
+    style?: 'light' | 'dark';
+  };
+  topBar?: {
+    backButton?: {
+      color?: Color;
+    };
+    rightButtons?: {
+      color?: Color;
+    }[];
+  };
 }
 
 export interface Options {
